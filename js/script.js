@@ -50,3 +50,13 @@ function prevMusic() {
     playMusic();
     playingSong();
 }
+
+//next music function
+function nextMusic() {
+    musicIndex++; //increment of musicIndex by 1
+    //if musicIndex is greater than array length then musicIndex will be 1 so the first music play
+    musicIndex > allMusic.length ? musicIndex = 1 : musicIndex = musicIndex;
+    loadMusic(musicIndex);
+    playMusic();
+    playingSong();
+}
