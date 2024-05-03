@@ -167,3 +167,47 @@ mainAudio.addEventListener("ended", () => {
       break;
   }
 });
+
+//show music list onclick of music icon
+moreMusicBtn.addEventListener("click", () => {
+    musicList.classList.toggle("show");
+});
+
+closemoreMusic.addEventListener("click", () => {
+    moreMusicBtn.click();
+});
+
+const ulTag = wrapper.querySelector("ul");
+
+for (let i = 0; i < allMusic.length; i++) {
+
+    let liTag = `
+        <li li-index="${i + 1}">
+            <div class="row">
+                <span>${allMusic[i].name}</span>
+                <p>${allMusic[i].artist}</p>
+            </div>
+            <span id="${allMusic[i].src}" class="audio-duration">3:40</span>
+            <audio class="${allMusic[i].src}" src="songs/${allMusic[i].src}.mp3"></audio>
+        </li>
+    `;
+
+    ulTag.insertAdjacentHTML("beforeend", liTag);
+
+    let liAudioDurationTag = ulTag.querySelector(`#${allMusic[i].src}`);
+    let liAudioTag = ulTag.querySelector(`.${allMusic[i].src}`);
+
+    liAudioTag.addEventListener("loadeddata", () => {
+
+        let duration = liAudioTag.duration;
+        let totalMin = Math.floor(duration / 60);
+        let totalSec = Math.floor(duration % 60);
+        if (totalSec < 10) {
+            totalSec = `0${totalSec}`;
+        }
+
+        liAudioDurationTag.innerText = `${totalMin}:${totalSec}`;
+        liAudioDurationTag.setAttribute("t-duration", `${totalMin}:${totalSec}`);
+    })
+
+}
