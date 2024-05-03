@@ -60,3 +60,19 @@ function nextMusic() {
     playMusic();
     playingSong();
 }
+
+// play or pause button event
+playPauseBtn.addEventListener("click", () => {
+    const isMusicPlay = wrapper.classList.contains("paused");
+    //if isPlayMusic is true then call pauseMusic else call playMusic
+    isMusicPlay ? pauseMusic() : playMusic();
+    playingSong();
+});
+
+prevBtn.addEventListener('click', () => {
+    prevMusic();
+})
+
+nextBtn.addEventListener("click", () => {
+    nextMusic();
+})
